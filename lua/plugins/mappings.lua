@@ -1,11 +1,8 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
-  ---@type AstroCoreOpts
-  opts = {
-    -- Mappings can be configured through AstroCore as well.
-    -- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized
-    mappings = {
+  opts = function(_, opts)
+    opts.mappings = vim.tbl_deep_extend("force", opts.mappings or {}, {
       i = {
         -- go to  beginning and end
         ["<C-A>"] = { "<ESC>^i", desc = "beginning of line" },
@@ -62,6 +59,28 @@ return {
         -- Dellete text when pasting instead of overwriting register
         ["p"] = { '"_dP' },
       },
-    },
-    }
+    })
+
+    -- Define the function to replace key mappings
+    local function replace_group(modes, group, new_group)
+      if type(modes) == "string" then modes = { modes } end
+      for _, mode in ipairs(modes) do
+        -- Ensure mode exists in opts.mappings
+        opts.mappings[mode] = opts.mappings[mode] or {}
+
+        for k, v in pairs(opts.mappings[mode]) do
+          if k:find(group) then
+            if new_group then opts.mappings[mode][k:gsub(group, new_group)] = v end
+            opts.mappings[mode][k] = false
+          end
+        end
+      end
+    end
+
+    -- Replace 'S' in session group by 's'
+    replace_group({ "n", "v" }, "<Leader>S", "<Leader>s")
+
+    -- Return the modified opts
+    return opts
+  end,
 }
