@@ -12,6 +12,13 @@ return {
     { "lambdalisue/suda.vim", lazy = false },
     { "rose-pine/neovim", lazy = false },
     { 
+      "akinsho/toggleterm.nvim",
+      opts = {
+        direction = "float",
+        persist_mode = true,
+      },
+    },
+    {
       "nvim-treesitter/nvim-treesitter-context",
       lazy = false,
       setup = { max_lines = 10 }
