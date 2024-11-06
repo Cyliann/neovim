@@ -46,6 +46,9 @@ return {
         ["<Leader>Gj"] = { "<cmd>GoTagAdd<cr>", desc = "Add JSON tags for Go struct" },
         ["<Leader>Gt"] = { "<cmd>GoTestAdd<cr>", desc = "Generate test for current function" },
         ["<Leader>GT"] = { "<cmd>GoTestAll<cr>", desc = "Generate tests for all functions" },
+
+        -- Telescope reference search
+        ["gR"] = { "<cmd>Telescope lsp_references<cr>", desc = "Search references"},
       },
 
       v = {

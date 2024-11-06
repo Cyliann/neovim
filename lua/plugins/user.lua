@@ -6,14 +6,16 @@ return {
     "AstroNvim/astrotheme",
     "simrat39/rust-tools.nvim",
     "andweeb/presence.nvim",
-    "jose-elias-alvarez/typescript.nvim",
     "vimwiki/vimwiki",
     "jbyuki/instant.nvim",
     { "adishourya/base46", lazy = false },
-    { "nvim-treesitter/nvim-treesitter-context", lazy = false },
     { "lambdalisue/suda.vim", lazy = false },
     { "rose-pine/neovim", lazy = false },
-    { "mg979/vim-visual-multi", lazy = false },
+    { 
+      "nvim-treesitter/nvim-treesitter-context",
+      lazy = false,
+      setup = { max_lines = 10 }
+    },
     {
       "olexsmir/gopher.nvim",
       ft = "go",

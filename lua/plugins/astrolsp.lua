@@ -36,7 +36,8 @@ return {
     servers = {
       "basedpyright",
       "lua_ls",
-      "glsl_analyzer"
+      "glsl_analyzer",
+      "gopls"
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
