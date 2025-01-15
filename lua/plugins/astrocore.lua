@@ -29,7 +29,7 @@ return {
         foldenable = false,
         foldexpr = "nvim_treesitter#foldexpr()",
         foldmethod = "expr",
-        guifont = { "JetBrains Mono", ":h13" },
+        guifont = { "FiraCode Nerd Font Mono", ":h13" },
         scrolloff = 10,
         autochdir = true,
       },
