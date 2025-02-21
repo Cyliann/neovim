@@ -42,12 +42,6 @@ return {
 
   },
   {
-    "williamboman/mason-lspconfig.nvim",
-    opts = {
-      ensure_installed = { "rust_analyzer", "wgsl_analyzer" },
-    },
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       rainbow = {

@@ -15,6 +15,7 @@ return {
         ["<C-K>"] = { "<Up>", desc = "move up" },
 
         ["<C-S-V>"] = { "<C-R>*", desc = "paste from clipboard" },
+        ["<C-BS>"] = { "<C-W>", desc = "delete previous word"}
       },
 
       n = {
@@ -59,7 +60,7 @@ return {
       },
 
       x = {
-        -- Dellete text when pasting instead of overwriting register
+        -- Delete text when pasting instead of overwriting register
         ["p"] = { '"_dP' },
       },
     })
