@@ -56,7 +56,7 @@ return {
         -- Use ";" as command mode
         [";"] = { ":" },
 
-        ["s"] = { ":s/", desc = "Search and replace" },
+        [",s"] = { ":s/", desc = "Search and replace" },
       },
 
       x = {
