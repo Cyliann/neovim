@@ -9,4 +9,5 @@ return {
   { import = "astrocommunity.pack.nix" },
   { import = "astrocommunity.markdown-and-latex.vimtex" },
   { import = "astrocommunity.recipes.neovide" },
+  { import = "astrocommunity.pack.typst" },
 }
