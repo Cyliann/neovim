@@ -1,45 +1,53 @@
 ---@type LazySpec
 return {
-    -- Neorg
-    { "nvim-neorg/lua-utils.nvim", lazy = false },
-    { "pysan3/pathlib.nvim", lazy = false },
-    { "nvim-neotest/nvim-nio", lazy = false },
-    {
-      "nvim-neorg/neorg",
-      lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
-      version = "*", -- Pin Neorg to the latest stable release
-      config = function()
-        require("neorg").setup({
-          load = {
-          ["core.defaults"] = {},
-          ["core.concealer"] = {
-            config = {
-              icon_preset = "varied",
-            }
+  "nvim-neorg/neorg",
+  version = "^9",
+  event = "VeryLazy",
+  dependencies = { "nvim-treesitter/nvim-treesitter" },
+  opts = function(_, opts)
+    local astrocore = require "astrocore"
+    return astrocore.extend_tbl(opts, {
+      load = {
+        ["core.defaults"] = {}, -- Loads default behaviour
+        ["core.concealer"] = {
+          config = {
+            icon_preset = "varied",
+          }
+        }, -- Adds pretty icons to your documents
+        ["core.keybinds"] = {}, -- Adds default keybindings
+        ["core.completion"] = {
+          config = {
+            engine = "nvim-cmp",
           },
-          ["core.export"] = {},
-          ["core.summary"] = {
-            config = {
-              strategy = "by_path"
-            }
-          },
-          ["core.dirman"] = {
-            config = {
-              workspaces = {
-                notes = "~/uni/notes",
-              },
-              default_workspace = "notes",
+        }, -- Enables support for completion plugins
+        ["core.dirman"] = { -- Manages Neorg workspaces
+          config = {
+            workspaces = {
+              notes = "~/uni/notes",
             },
+            default_workspace = "notes",
           },
-          ["core.completion"] = {
-            config = {
-              engine = "nvim-cmp"
-            }
-          },
-          ["core.integrations.treesitter"] = {},
-          ["core.integrations.nvim-cmp"] = {}
-        }
-        })
-      end
+        },
+        ["core.export"] = {},
+        ["core.summary"] = {
+          config = {
+            strategy = "by_path"
+          }
+        },
+        ["core.integrations.treesitter"] = {},
+        ["core.integrations.nvim-cmp"] = {}
+      },
+    })
+  end,
+  specs = {
+    {
+      "nvim-treesitter/nvim-treesitter",
+      opts = function(_, opts)
+        if opts.ensure_installed ~= "all" then
+          opts.ensure_installed =
+          require("astrocore").list_insert_unique(opts.ensure_installed, { "norg", "norg_meta" })
+        end
+      end,
     },
+  }
 }
