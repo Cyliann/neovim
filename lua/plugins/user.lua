@@ -18,12 +18,6 @@ return {
     },
   },
   {
-    "David-Kunz/gen.nvim",
-    opts = {
-      model = "deepseek-r1",
-    }
-  },
-  {
     "nvim-treesitter/nvim-treesitter-context",
     lazy = false,
     setup = { max_lines = 10 }
