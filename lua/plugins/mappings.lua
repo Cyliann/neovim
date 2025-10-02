@@ -61,7 +61,7 @@ return {
 
       x = {
         -- Delete text when pasting instead of overwriting register
-        ["p"] = { '"_dP' },
+        ["p"] = { '"-dP' },
       },
     })
 

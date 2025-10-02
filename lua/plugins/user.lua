@@ -7,9 +7,20 @@ return {
   "simrat39/rust-tools.nvim",
   "andweeb/presence.nvim",
   "jbyuki/instant.nvim",
+  "subnut/nvim-ghost.nvim",
   { "adishourya/base46", lazy = false },
   { "lambdalisue/suda.vim", lazy = false },
   { "rose-pine/neovim", lazy = false },
+  {
+    "quarto-dev/quarto-nvim",
+    dependencies = {
+      "jmbuhr/otter.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+  },
+  { "chomosuke/typst-preview.nvim",
+    opts = {invert_colors = 'never'}
+  },
   {
     "akinsho/toggleterm.nvim",
     opts = {
