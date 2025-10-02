@@ -39,12 +39,28 @@ return {
       "lua_ls",
       "glsl_analyzer",
       "gopls",
-      "rust_analyzer"
+      "rust_analyzer",
+      "arduino_language_server",
+      "clangd",
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
-    },
+      arduino_language_server = { --  https://github.com/williamboman/nvim-lsp-installer/tree/main/lua/nvim-lsp-installer/servers/arduino_language_server | https://discord.com/channels/939594913560031363/1078005571451621546/threads/1122910773270818887
+        on_new_config = function (config)
+          local fqbn = "arduino:avr:mega"
+          config.capabilities.textDocument.semanticTokens = vim.NIL
+          config.capabilities.workspace.semanticTokens = vim.NIL
+          config.cmd = {         --  https://forum.arduino.cc/t/solved-errors-with-clangd-startup-for-arduino-language-server-in-nvim/1019977
+            "arduino-language-server",
+            "-cli-config" , "~/arduino15/arduino-cli.yaml",
+            "-cli"        , "/usr/bin/arduino-cli",
+            "-clangd"     , "/usr/bin/clangd",
+            "-fqbn"       , fqbn
+          }
+        end
+      },
+      },
     -- customize how language servers are attached
     handlers = {
       -- a function without a key is simply the default handler, functions take two parameters, the server name and the configured options table for that server
