@@ -1,5 +1,3 @@
 {
-    "diagnostics.globals": [
-        "opts"
-    ]
+  "format.enable": false
 }

@@ -5,12 +5,13 @@ return {
   "nvim-treesitter/nvim-treesitter",
   opts = {
     ensure_installed = {
-      "lua",
-      "vim",
-      "go",
-      "glsl",
-      "python"
+      -- "lua",
+      -- "vim",
+      -- "go",
+      -- "glsl",
+      -- "python"
       -- add more arguments for adding more treesitter parsers
     },
   },
 }
+

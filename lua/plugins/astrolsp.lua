@@ -11,7 +11,7 @@ return {
     -- Configuration table of features provided by AstroLSP
     features = {
       codelens = true, -- enable/disable codelens refresh on start
-      inlay_hints = false, -- enable/disable inlay hints on start
+      inlay_hints = true, -- enable/disable inlay hints on start
       semantic_tokens = true, -- enable/disable semantic token highlighting
     },
     -- customize lsp formatting options
@@ -42,6 +42,7 @@ return {
       "rust_analyzer",
       "arduino_language_server",
       "clangd",
+      "ty",
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
@@ -60,7 +61,17 @@ return {
           }
         end
       },
+    },
+
+    defaults = {
+      hover = {
+        border = "rounded",
       },
+      signature_help = {
+        border = "rounded",
+      },
+    },
+
     -- customize how language servers are attached
     handlers = {
       -- a function without a key is simply the default handler, functions take two parameters, the server name and the configured options table for that server
@@ -119,3 +130,4 @@ return {
     end,
   },
 }
+
