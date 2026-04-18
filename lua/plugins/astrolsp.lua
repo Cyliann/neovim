@@ -34,7 +34,6 @@ return {
     },
     -- enable servers that you already have installed without mason
     servers = {
-      "basedpyright",
       "ruff",
       "lua_ls",
       "glsl_analyzer",
@@ -48,18 +47,37 @@ return {
     ---@diagnostic disable: missing-fields
     config = {
       arduino_language_server = { --  https://github.com/williamboman/nvim-lsp-installer/tree/main/lua/nvim-lsp-installer/servers/arduino_language_server | https://discord.com/channels/939594913560031363/1078005571451621546/threads/1122910773270818887
-        on_new_config = function (config)
+        on_new_config = function(config)
           local fqbn = "arduino:avr:mega"
           config.capabilities.textDocument.semanticTokens = vim.NIL
           config.capabilities.workspace.semanticTokens = vim.NIL
-          config.cmd = {         --  https://forum.arduino.cc/t/solved-errors-with-clangd-startup-for-arduino-language-server-in-nvim/1019977
-            "arduino-language-server",
-            "-cli-config" , "~/arduino15/arduino-cli.yaml",
-            "-cli"        , "/usr/bin/arduino-cli",
-            "-clangd"     , "/usr/bin/clangd",
-            "-fqbn"       , fqbn
-          }
-        end
+          config.cmd =
+            { --  https://forum.arduino.cc/t/solved-errors-with-clangd-startup-for-arduino-language-server-in-nvim/1019977
+              "arduino-language-server",
+              "-cli-config",
+              "~/arduino15/arduino-cli.yaml",
+              "-cli",
+              "/usr/bin/arduino-cli",
+              "-clangd",
+              "/usr/bin/clangd",
+              "-fqbn",
+              fqbn,
+            }
+        end,
+      },
+      ty = {
+        cmd = { "ty", "server" },
+        filetypes = { "python" },
+        root_dir = function(...)
+          return require("lspconfig.util").root_pattern(
+            "ty.toml",
+            "pyproject.toml",
+            "setup.py",
+            "setup.cfg",
+            "requirements.txt",
+            ".git"
+          )(...)
+        end,
       },
     },
 
@@ -80,7 +98,6 @@ return {
       -- the key is the server that is being setup with `lspconfig`
       -- rust_analyzer = false, -- setting a handler to false will disable the set up of that language server
       -- pyright = function(_, opts) require("lspconfig").pyright.setup(opts) end -- or a custom handler function can be passed
-      rust_analyzer = function(_, opts) require("rust-tools").setup { server = opts } end,
     },
     -- Configure buffer local auto commands to add when attaching a language server
     autocmds = {
@@ -130,4 +147,3 @@ return {
     end,
   },
 }
-

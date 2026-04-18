@@ -1,3 +1,5 @@
+if true then return {} end -- INFO: Broken for now. I'm not using Neorg recently and I don't have time to fix this
+
 ---@type LazySpec
 return {
   "nvim-neorg/neorg",
