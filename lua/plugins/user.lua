@@ -15,9 +15,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
   },
-  { "chomosuke/typst-preview.nvim",
-    opts = {invert_colors = 'never'}
-  },
+  { "chomosuke/typst-preview.nvim", opts = { invert_colors = "never" } },
   {
     "akinsho/toggleterm.nvim",
     opts = {
@@ -28,7 +26,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter-context",
     lazy = false,
-    setup = { max_lines = 10 }
+    setup = { max_lines = 10 },
   },
   {
     "olexsmir/gopher.nvim",
@@ -41,7 +39,6 @@ return {
     run = "cd app && npm install",
     setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
     ft = { "markdown" },
-
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -68,22 +65,11 @@ return {
     "L3MON4D3/LuaSnip",
     config = function(plugin, opts)
       -- include the default astronvim config that calls the setup call
-      require("astronvim.plugins.configs.luasnip")(plugin, opts)
+      require "astronvim.plugins.configs.luasnip"(plugin, opts)
       -- load snippets paths
-      require("luasnip.loaders.from_vscode").lazy_load({
-        paths = { vim.fn.stdpath("config") .. "/snippets" },
-      })
+      require("luasnip.loaders.from_vscode").lazy_load {
+        paths = { vim.fn.stdpath "config" .. "/snippets" },
+      }
     end,
   },
-  -- Neorg
-  { "nvim-neorg/lua-utils.nvim", lazy = false },
-  { "pysan3/pathlib.nvim", lazy = false },
-  { "nvim-neotest/nvim-nio", lazy = false },
-  {
-    "nvim-neorg/neorg",
-    lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
-    version = "*", -- Pin Neorg to the latest stable release
-    config = true,
-  },
 }
-
